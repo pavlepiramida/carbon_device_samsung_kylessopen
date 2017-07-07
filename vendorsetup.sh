@@ -14,5 +14,5 @@
 # limitations under the License.
 #
 
-add_lunch_combo omni_kylessopen-userdebug
-add_lunch_combo aosp_kylessopen-userdebug
+add_lunch_combo carbon_kylessopen-userdebug
+#add_lunch_combo aosp_kylessopen-userdebug

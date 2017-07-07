@@ -1,6 +1,6 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-$(call inherit-product, vendor/omni/config/common.mk)
+$(call inherit-product, vendor/carbon/config/common.mk)
 
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
@@ -12,6 +12,11 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/kylessopen/overlay
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
+PRODUCT_PACKAGES += \
+    libnetcmdiface \
+    libloc_api-rpc \
+    libqservice
+
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -22,7 +27,26 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    btmac
+    bluetooth-headers \
+    hciconfig \
+    hciattach \
+    btmon \
+    btproxy \
+    bluetoothd-snoop \
+    btmgmt \
+    hcitool \
+    l2ping \
+    libsbc \
+    avinfo \
+    bccmd \
+    haltest \
+    libdbus \
+    audio.sco.default \
+    bluetoothd
+
+# Camera
+PRODUCT_PACKAGES += \
+   camera.msm7x27a
 
 # Device
 PRODUCT_PACKAGES += \
@@ -34,6 +58,7 @@ PRODUCT_PACKAGES += \
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm7x27a
+	
 
 # Graphics
 PRODUCT_PACKAGES += \
@@ -44,6 +69,9 @@ PRODUCT_PACKAGES += \
     
 # Torch
 PRODUCT_PACKAGES += OmniTorch
+
+#Apollo
+PRODUCT_PACKAGES += Apollo
     
 # Lights
 PRODUCT_PACKAGES += \
@@ -72,9 +100,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/samsung/kylessopen/prebuilt/system,system)
     
-# Classic Webview
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.webview.provider=classic
+
     
 #Optimization for low-memory devices
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -99,15 +125,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 $(call find-copy-subdir-files,*,device/samsung/kylessopen/prebuilt/recovery,recovery/root)
 
-# FM
-PRODUCT_COPY_FILES += \
-    device/samsung/kylessopen/prebuilt/system/etc/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh
-
-# FM Config
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.fm.analogpath.supported=true \
-    ro.fm.transmitter=false \
-    ro.fm.mulinst.recording.support=false
     
 # Enable repeatable keys in CWM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -116,8 +133,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 $(call inherit-product, build/target/product/full.mk)
 
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-PRODUCT_NAME := omni_kylessopen
-PRODUCT_DEVICE := kylessopen
-PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := GT-S7560M

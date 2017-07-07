@@ -13,6 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-$(call inherit-product, device/samsung/kylessopen/omni_kylessopen.mk)
+$(call inherit-product, device/samsung/kylessopen/carbon_kylessopen.mk)
 
 PRODUCT_NAME := aosp_kylessopen
