@@ -1,3 +1,8 @@
 CarbonROM 4.4 device tree for the Samsung Galaxy Ace II X (GT-S7560M)
 
-
+Only needs legacymod/display-legacy to boot out of the box.
+For wifi you need legacymod atheros,
+for bt you need to swap bluedroid with bluez,all projects for bluez can be found at KlinkOnE github page.
+carbon is very close to CM so reusing all my commits on forked cm project will FIX a lot of 
+things that are broken (im to lazy to write and document which commits you need in which project but once you start building youll get the idea of whats missing).
+Only thing I want to point out is that in frameworks/native you need commits to disable Vsync on on msm7x27a as it is very heavy on the gpu and cpu.
